@@ -1,0 +1,4 @@
+import CollectionTable, { displayUser } from './CollectionTable.jsx'
+
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/
+export default function Activities() { return <CollectionTable endpoint="activities" title="Activities" description="Recent movement logged by your OctoFit community." empty="No activities have been logged yet." columns={[{ label: 'Athlete', render: (item) => displayUser(item.user) }, { label: 'Activity', render: (item) => item.type }, { label: 'Duration', render: (item) => `${item.durationMinutes ?? 0} min` }, { label: 'Calories', render: (item) => item.caloriesBurned ? `${item.caloriesBurned} kcal` : '—' }, { label: 'Completed', render: (item) => item.completedAt ? new Date(item.completedAt).toLocaleDateString() : '—' }]} /> }

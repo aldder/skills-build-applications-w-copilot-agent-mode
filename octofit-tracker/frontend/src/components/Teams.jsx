@@ -1,0 +1,4 @@
+import CollectionTable from './CollectionTable.jsx'
+
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/
+export default function Teams() { return <CollectionTable endpoint="teams" title="Teams" description="Find the people who make consistency more fun." empty="No teams have been created yet." columns={[{ label: 'Team', render: (item) => <strong>{item.name}</strong> }, { label: 'Members', render: (item) => Array.isArray(item.members) ? item.members.length : 0 }, { label: 'Roster', render: (item) => Array.isArray(item.members) ? item.members.map((member) => member.name || member).join(', ') || 'No members yet' : 'No roster data' }]} /> }
