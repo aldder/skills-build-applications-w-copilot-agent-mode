@@ -1,0 +1,2 @@
+import CollectionTable from './CollectionTable.jsx'
+export default function Workouts() { return <CollectionTable endpoint="workouts" title="Workouts" description="Choose a focused session and make it count." empty="No workouts are available yet." columns={[{ label: 'Workout', render: (item) => <strong>{item.title}</strong> }, { label: 'Description', render: (item) => item.description || '—' }, { label: 'Duration', render: (item) => `${item.durationMinutes ?? 0} min` }, { label: 'Difficulty', render: (item) => item.difficulty || '—' }]} /> }

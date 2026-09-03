@@ -1,0 +1,2 @@
+import CollectionTable, { displayUser } from './CollectionTable.jsx'
+export default function Leaderboard() { return <CollectionTable endpoint="leaderboard" title="Leaderboard" description="A little friendly pressure for your next workout." empty="The leaderboard is waiting for its first score." columns={[{ label: 'Rank', render: (_item, index) => `#${index + 1}` }, { label: 'Athlete', render: (item) => displayUser(item.user) }, { label: 'Points', render: (item) => <strong>{item.points ?? 0}</strong> }, { label: 'Period', render: (item) => item.period || 'All-time' }]} /> }
