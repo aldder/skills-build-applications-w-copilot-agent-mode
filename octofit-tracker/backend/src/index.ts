@@ -3,11 +3,11 @@ import './config/database.js';
 import { Activity, Leaderboard, Team, User, Workout } from './models.js';
 
 const app = express();
-const port = Number(process.env.PORT ?? 8000);
+const port = 8000;
 const codespaceName = process.env.CODESPACE_NAME;
 const apiUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
-    : `http://localhost:${port}`;
+    : 'http://localhost:8000';
 
 app.use(express.json());
 
@@ -15,7 +15,7 @@ app.get('/api/health', (_request, response) => {
     response.json({ status: 'ok', apiUrl });
 });
 
-app.get('/api/users/', async (_request, response, next) => {
+app.get('/api/users', async (_request, response, next) => {
     try {
         response.json(await User.find().sort({ name: 1 }));
     } catch (error) {
@@ -31,7 +31,7 @@ app.get('/api/teams/', async (_request, response, next) => {
     }
 });
 
-app.get('/api/activities/', async (_request, response, next) => {
+app.get('/api/activities', async (_request, response, next) => {
     try {
         response.json(await Activity.find().populate('user').sort({ completedAt: -1 }));
     } catch (error) {
@@ -60,6 +60,6 @@ app.use((error: Error, _request: express.Request, response: express.Response, _n
     response.status(500).json({ error: 'Unable to complete the request.' });
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`OctoFit API listening on ${apiUrl}`);
 });
