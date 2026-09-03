@@ -1,6 +1,5 @@
 ---
-mode: 'agent'
-model: GPT-5.5
+model: GPT-5.6 Terra (copilot)
 description: 'Create the Node.js logic tier for the Octofit multi-tier application'
 ---
 
